@@ -48,14 +48,14 @@ app.use(function (req, res, next) {
   if (req.url == '/user/login') {
     next();
   }else{
-    let token=req.get("Authorization");
+    var token=req.get("Authorization");
     if(!!!token || token=="undefined"){
       res.json(jsonTool.justCodeInt(false,"身份验证失败！"))
     }else{
       dbTool.findOne("token",{token:token},function(resons){
         if (!!resons) {
           console.log(resons)
-          let timeDiff=moment().diff(resons.updateTime,"hours");
+          var timeDiff=moment().diff(resons.updateTime,"hours");
           console.log(timeDiff)
           if(timeDiff>1){
             res.json(jsonTool.justCodeInt(false,"身份验证失败！"))
