@@ -14,7 +14,7 @@ router.post('/save', function (req, res, next) {
           res.json(jsonTool.justCodeInt(false, "只能加入8条数据哦！"))
           return;
         }
-        dbTool.findOne(collectionName, { "name": req.body.name }, function (resons) {
+        dbTool.findOne(collectionName, { "name": req.body.name,"user": req.get("Authorization") }, function (resons) {
           if (!!resons) {
             res.json(jsonTool.justCodeInt(false, "饭店已存在哦！"))
           } else {
