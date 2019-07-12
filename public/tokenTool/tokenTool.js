@@ -5,10 +5,10 @@ var collectionName="token";
 var tokenInstance={
     saveToken:function(param,cb){//保存token
         param.updateTime=moment().format();
-        let type=false;
+        var type=false;
         dbTool.findOne(collectionName,{token:param.token},function(resons){
             if (!!resons) {
-                let updateStr={$set:{"updateTime":param.updateTime}}
+                var updateStr={$set:{"updateTime":param.updateTime}}
                 dbTool.updateOne(collectionName,{token:param.token},updateStr,function(result){
                     type=result;
                     cb(type,resons.drawType)
@@ -25,7 +25,7 @@ var tokenInstance={
     checkToken: function (param,cb) {//检查token是否有效
         dbTool.findOne(collectionName,{token:param.token},function(resons){
             if (!!resons) {
-              let timeDiff=moment().diff(resons.updateTime,"hours");
+              var timeDiff=moment().diff(resons.updateTime,"hours");
               if(timeDiff>3){
                 cb(false);
               }else{
@@ -37,7 +37,7 @@ var tokenInstance={
         })
     },
     findToken: function (param) {//查找token
-        let type=false;
+        var type=false;
         dbTool.findOne(collectionName,param,function(resons){
             type=!!resons;
         })
