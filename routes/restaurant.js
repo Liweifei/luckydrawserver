@@ -39,7 +39,7 @@ router.post('/save', function (req, res, next) {
 /* remove restaurant. */
 router.post('/delete', function (req, res, next) {
   if (req.body._id) {
-    var whereStr = { '_id': ObjectId(req.body._id) };
+    var whereStr = { '_id': new ObjectId(req.body._id) };
     dbTool.deleteOne(collectionName, whereStr, function (result) {
       var msg = result ? '删除成功！' : '删除失败！';
       res.json(jsonTool.justCodeInt(result, msg))
@@ -50,7 +50,7 @@ router.post('/delete', function (req, res, next) {
 /* update restuarant. */
 router.post('/update', function (req, res, next) {
   if (req.body._id) {
-    var whereStr = { '_id': ObjectId(req.body._id) };
+    var whereStr = { '_id': new ObjectId(req.body._id) };
     var updateStr = {
       $set:
       {
@@ -73,7 +73,7 @@ router.post('/update', function (req, res, next) {
 /* draw this restuarant. */
 router.post('/draw', function (req, res, next) {
   if (req.body._id) {
-    var whereStr = { '_id': ObjectId(req.body._id) };
+    var whereStr = { '_id': new ObjectId(req.body._id) };
     var updateStr = {
       $set:
       {
