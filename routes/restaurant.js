@@ -39,6 +39,7 @@ router.post('/save', function (req, res, next) {
 /* remove restaurant. */
 router.post('/delete', function (req, res, next) {
   if (req.body._id) {
+    console.log(new ObjectId(req.body._id),req.body._id)
     var whereStr = { '_id': new ObjectId(req.body._id) };
     dbTool.deleteOne(collectionName, whereStr, function (result) {
       var msg = result ? '删除成功！' : '删除失败！';
@@ -58,6 +59,7 @@ router.post('/update', function (req, res, next) {
         "location": req.body.location,
         "isSelected": req.body.isSelected,
         "score": req.body.score,
+        "desc": req.body.desc,
         createDate: new Date()
       }
     }

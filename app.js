@@ -54,9 +54,9 @@ app.use(function (req, res, next) {
     }else{
       dbTool.findOne("token",{token:token},function(resons){
         if (!!resons) {
-          console.log(resons)
+          // console.log(resons)
           var timeDiff=moment().diff(resons.updateTime,"hours");
-          console.log(timeDiff)
+          // console.log(timeDiff)
           if(timeDiff>1){
             res.json(jsonTool.justCodeInt(false,"身份验证失败！"))
           }else{
