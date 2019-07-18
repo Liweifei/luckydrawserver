@@ -46,9 +46,13 @@ var scheduleInstance={//定时器
     },
     resetDrawType:function(){
         var updateStr={$set:{"drawType":false}}
+        var updateStr3={$set:{"isToday":false}}
         schedule.scheduleJob('0 0 1 * * *',function(){//每天的0点0分重置抽奖 
             dbTool.updateMany("token",{},updateStr,function(result){
                 console.log(result+'重置抽奖次数任务中:' + new Date());
+            })
+            dbTool.updateMany("restaurant",{},updateStr3,function(result){
+                console.log(result+'重置今天抽中项目:' + new Date());
             })
         });
         var updateStr2={$set:{"isSelected":0,"isToday":false}}//
