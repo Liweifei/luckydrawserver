@@ -51,7 +51,7 @@ var scheduleInstance={//定时器
             dbTool.updateMany("token",{},updateStr,function(result){
                 console.log(result+'重置抽奖次数任务中:' + new Date());
             })
-            dbTool.updateMany("restaurant",{},updateStr3,function(result){
+            dbTool.updateMany("restaurant",{isToday:true},updateStr3,function(result){
                 console.log(result+'重置今天抽中项目:' + new Date());
             })
         });
@@ -63,5 +63,5 @@ var scheduleInstance={//定时器
         }); 
     }
 }
-
+db.getCollection('restaurant').update({},{$set:{isToday:false}},true,true)
 module.exports = scheduleInstance;
