@@ -63,5 +63,4 @@ var scheduleInstance={//定时器
         }); 
     }
 }
-db.getCollection('restaurant').update({},{$set:{isToday:false}},true,true)
 module.exports = scheduleInstance;
